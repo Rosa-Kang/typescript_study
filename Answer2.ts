@@ -1,4 +1,5 @@
-// 문제 1. 사용자 정보를 나타내는 인터페이스와 타입을 작성하세요. 사용자 정보는 다음과 같은 구조를 가집니다:
+// 3강 -----------------------------------------------------------------------
+// // 문제 1. 사용자 정보를 나타내는 인터페이스와 타입을 작성하세요. 사용자 정보는 다음과 같은 구조를 가집니다:
 // id: 고유 ID (숫자)
 // name: 이름 (문자열)
 // email: 이메일 (문자열, 선택 속성)
@@ -163,3 +164,80 @@ const user5: AdminUser = {
     role: 'owner'
 }
 
+// 4강 -----------------------------------------------------------------------
+// 문제 1. 작업의 상태를 나타내는 enum을 작성하고, 상태에 따라 다른 메시지를 반환하는 함수를 작성하세요.
+enum Status {
+    Pending =  "pending",
+    InProgress = "progress",
+    Completed = "completed"
+}
+
+function workingStatus(status: Status):string {
+    if(status == Status.Pending) {
+        return "작업이 대기 중입니다.";
+    } else if(status == Status.InProgress) {
+        return "작업이 진행 중입니다.";
+    } else {
+        return "작업이 완료되었습니다.";
+    }
+}
+// 문제 2. 아래 조건에 따라 함수를 작성하세요.
+// 작업 상태를 나타내는 enum
+enum  TaskStatus {
+    Pending = "pending",
+    InProgress = "progress",
+    Completed = "completed",
+    Failed = "failed"
+}
+
+function processTask(status: TaskStatus, input: unknown): string {
+    if(typeof input !== "string") {
+        throw new Error("입력값은 문자열이어야 합니다.")
+    }
+   switch(status) {
+    case TaskStatus.Pending:
+        return input.toUpperCase();
+    case TaskStatus.InProgress:
+        return input.toLowerCase();
+    case TaskStatus.Completed:
+        return `완료: ${input}`
+    case TaskStatus.Failed:
+        throw new Error('작업이 실패했습니다.');
+   }
+}
+
+// 문제 3. 아래 조건에 따라 코드를 작성하세요.
+enum Level {
+    Info = "Info",
+    Error = "Error",
+    Debug = "Debug",
+}
+
+type ErrorLog = (message:string, level:Level) => void;
+
+const logMessage: ErrorLog = (message, level) => {
+   switch(level){
+    case Level.Info:
+        console.log(`[INFO] ${message}`);
+    case Level.Error:
+        console.log(`[ERROR] ${message}`);
+    case Level.Debug:
+        console.log(`[DEBUG] ${message}`);
+   }
+};
+
+
+// 문제 4. 아래 조건을 만족하는 함수를 작성하세요.
+function processAny(input: any): string {
+    return input.toString();
+}
+
+function processUnknown(input: unknown): string | number {
+  if(typeof input == 'string') {
+    return input.toUpperCase();
+  } else if(typeof input == 'number') {
+    return input * 10;
+  } else {
+    throw new Error("Type is wrong..")
+  }
+}
