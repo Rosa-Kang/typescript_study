@@ -27,7 +27,7 @@ type UserType2 = {
 }
 
 // User 타입을 사용하여 아래 객체를 작성하세요.
-const user = {
+const user:UserType2 = {
   id: 1,
   name: "Alice",
   address: {
@@ -167,9 +167,9 @@ const user5: AdminUser = {
 // 4강 -----------------------------------------------------------------------
 // 문제 1. 작업의 상태를 나타내는 enum을 작성하고, 상태에 따라 다른 메시지를 반환하는 함수를 작성하세요.
 enum Status {
-    Pending =  "pending",
-    InProgress = "progress",
-    Completed = "completed"
+    Pending =  "Pending",
+    InProgress = "Progress",
+    Completed = "Completed"
 }
 
 function workingStatus(status: Status):string {
@@ -200,7 +200,7 @@ function processTask(status: TaskStatus, input: unknown): string {
     case TaskStatus.InProgress:
         return input.toLowerCase();
     case TaskStatus.Completed:
-        return `완료: ${input}`
+        return `완료: ${input}`;
     case TaskStatus.Failed:
         throw new Error('작업이 실패했습니다.');
    }
@@ -219,10 +219,15 @@ const logMessage: ErrorLog = (message, level) => {
    switch(level){
     case Level.Info:
         console.log(`[INFO] ${message}`);
+        break;
     case Level.Error:
         console.log(`[ERROR] ${message}`);
+        break;
     case Level.Debug:
         console.log(`[DEBUG] ${message}`);
+        break;
+    default :
+        throw new Error('Unknown error log..')
    }
 };
 
