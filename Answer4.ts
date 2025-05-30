@@ -1,7 +1,7 @@
 // 11강 -------------------------------------------
 // 문제 1. 배열의 첫 번째 요소를 반환하는 함수를 작성하세요. 배열의 요소 타입에 관계없이 작동해야 합니다.
-function getFirstElement<T>(array:T[]): T {
-        return array[0];
+function getFirstElement<T>(array: T[]): T | undefined {
+  return array[0];
 }
 
 // 문제 2. 숫자 배열인지 문자열 배열인지 확인하는 함수를 작성하세요.
@@ -51,7 +51,7 @@ function getButtonClass(style:ButtonStyle):string {
 // 문제 2. 서버에서 데이터를 요청할 때 발생하는 상태를 처리하는 함수를 작성하세요.
 type ReqState = "loading" | "success" | "error";
 
-function handleRequestState(state:ReqState) {
+function handleRequestState(state:ReqState):string {
     switch(state) {
         case "loading" :
             return "Loading, please wait...";
@@ -62,5 +62,4 @@ function handleRequestState(state:ReqState) {
         default :
             throw new Error("Request type is unknown..");
     }
-
 }
