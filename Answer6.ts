@@ -1,6 +1,6 @@
 // 문제은행 15. 타입 활용하기
 // 문제 1. 함수의 반환 타입만 추출하는 유틸리티 타입을 작성하세요.
-type ExtractReturnType<F> = F extends (...args:any) => infer R ? R: never;
+type ExtractReturnType<F> = F extends (...args:any[]) => infer R ? R: never;
 
 
 // 문제 2. 동적으로 주어진 키를 사용해 객체의 값을 추출하는 함수를 작성하세요.
